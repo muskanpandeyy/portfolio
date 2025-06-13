@@ -23,12 +23,7 @@ const TextBlock = styled.div`
   text-align: justify;
 `;
 
-const Heading = styled.div`
-  color: #ccd6f6;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-`;
+
 
 const SkillsTitle = styled.h3`
   color: #ccd6f6;
