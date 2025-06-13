@@ -128,7 +128,7 @@ const Hero = () => {
                     variant="outlined" 
                     size="large" 
                     component="a"
-                    href="/Data resume.pdf(1).pdf"
+                    href="/Data%20resume.pdf%281%29.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     startIcon={<DescriptionIcon />}
