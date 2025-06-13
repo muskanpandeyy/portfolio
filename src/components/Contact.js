@@ -101,7 +101,7 @@ const Contact = () => {
 
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
-              <StyledForm onSubmit={handleSubmit}>
+              <StyledForm ref={form} onSubmit={handleSubmit}>
                 <TextField
                   fullWidth
                   label="Name"
