@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Box, Container, Typography, Grid, TextField, Button, Snackbar, Alert } from '@mui/material';
+import { Box, Container, Typography, Grid, TextField, Button, Snackbar, Alert, useTheme, useMediaQuery } from '@mui/material';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import EmailIcon from '@mui/icons-material/Email';
@@ -11,6 +11,10 @@ const ContactSection = styled(Box)`
   min-height: 100vh;
   padding: 100px 0;
   background-color: #0a192f;
+  
+  @media (max-width: 600px) {
+    padding: 80px 0 60px 0;
+  }
 `;
 
 const StyledForm = styled.form`
@@ -18,6 +22,10 @@ const StyledForm = styled.form`
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+  
+  @media (max-width: 600px) {
+    padding: 1.5rem;
+  }
 `;
 
 const SocialButton = styled(Button)`
@@ -25,6 +33,13 @@ const SocialButton = styled(Button)`
   color: #8892b0;
   &:hover {
     color: #64ffda;
+  }
+  
+  @media (max-width: 600px) {
+    margin: 0.5rem 0;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 12px 16px;
   }
 `;
 
@@ -34,6 +49,8 @@ const Contact = () => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
   const [loading, setLoading] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
     try {
@@ -91,10 +108,29 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Typography variant="h4" sx={{ color: '#ccd6f6', mb: 2, textAlign: 'center' }}>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              color: '#ccd6f6', 
+              mb: 2, 
+              textAlign: 'center',
+              fontSize: { xs: '1.8rem', sm: '2.125rem', md: '2.125rem' }
+            }}
+          >
             Get In Touch
           </Typography>
-          <Typography variant="body1" sx={{ color: '#8892b0', mb: 4, textAlign: 'center', maxWidth: '600px', mx: 'auto' }}>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              color: '#8892b0', 
+              mb: 4, 
+              textAlign: 'center', 
+              maxWidth: '600px', 
+              mx: 'auto',
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+              px: { xs: 2, sm: 0 }
+            }}
+          >
             I'm currently looking for new opportunities. Whether you have a question or just want to say hi, 
             I'll try my best to get back to you!
           </Typography>
@@ -159,7 +195,7 @@ const Contact = () => {
                   margin="normal"
                   required
                   multiline
-                  rows={4}
+                  rows={isMobile ? 3 : 4}
                   sx={{
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
@@ -180,12 +216,13 @@ const Contact = () => {
                 <Button
                   type="submit"
                   variant="outlined"
-                  size="large"
+                  size={isMobile ? "medium" : "large"}
                   disabled={loading}
                   sx={{
                     mt: 2,
                     borderColor: '#64ffda',
                     color: '#64ffda',
+                    width: { xs: '100%', sm: 'auto' },
                     '&:hover': {
                       borderColor: '#64ffda',
                       backgroundColor: 'rgba(100, 255, 218, 0.1)',
@@ -197,11 +234,30 @@ const Contact = () => {
               </StyledForm>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant="h6" sx={{ color: '#ccd6f6', mb: 3 }}>
+              <Box sx={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'center', 
+                alignItems: { xs: 'center', md: 'flex-start' },
+                textAlign: { xs: 'center', md: 'left' }
+              }}>
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    color: '#ccd6f6', 
+                    mb: 3,
+                    fontSize: { xs: '1.1rem', sm: '1.25rem' }
+                  }}
+                >
                   Other ways to connect:
                 </Typography>
-                <Box sx={{ mb: 3 }}>
+                <Box sx={{ 
+                  mb: 3, 
+                  width: { xs: '100%', md: 'auto' },
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  alignItems: { xs: 'center', md: 'flex-start' }
+                }}>
                   <SocialButton
                     component="a"
                     startIcon={<EmailIcon />}
@@ -210,7 +266,13 @@ const Contact = () => {
                     muskanpandey781@gmail.com
                   </SocialButton>
                 </Box>
-                <Box sx={{ mb: 3 }}>
+                <Box sx={{ 
+                  mb: 3,
+                  width: { xs: '100%', md: 'auto' },
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  alignItems: { xs: 'center', md: 'flex-start' }
+                }}>
                   <SocialButton
                     component="a"
                     startIcon={<LinkedInIcon />}
@@ -221,7 +283,12 @@ const Contact = () => {
                     LinkedIn
                   </SocialButton>
                 </Box>
-                <Box>
+                <Box sx={{ 
+                  width: { xs: '100%', md: 'auto' },
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  alignItems: { xs: 'center', md: 'flex-start' }
+                }}>
                   <SocialButton
                     component="a"
                     startIcon={<GitHubIcon />}

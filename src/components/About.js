@@ -1,11 +1,15 @@
 import React from 'react';
-import {  Container, Grid } from '@mui/material';
+import {  Container, Grid, useTheme, useMediaQuery } from '@mui/material';
 import styled from 'styled-components';
 
 const AboutSection = styled.div`
   min-height: 100vh;
   padding: 100px 0;
   background-color: #0a192f;
+  
+  @media (max-width: 600px) {
+    padding: 80px 0 60px 0;
+  }
 `;
 
 const Title = styled.h2`
@@ -13,6 +17,15 @@ const Title = styled.h2`
   margin-bottom: 40px;
   font-size: 2.5rem;
   font-weight: 600;
+  
+  @media (max-width: 900px) {
+    text-align: center;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
 `;
 
 const TextBlock = styled.div`
@@ -21,15 +34,32 @@ const TextBlock = styled.div`
   line-height: 1.8;
   margin-bottom: 24px;
   text-align: justify;
+  
+  @media (max-width: 900px) {
+    text-align: center;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
 `;
-
-
 
 const SkillsTitle = styled.h3`
   color: #ccd6f6;
   margin-top: 32px;
   margin-bottom: 16px;
   font-size: 1.25rem;
+  
+  @media (max-width: 900px) {
+    text-align: center;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+    margin-top: 28px;
+  }
 `;
 
 const SkillsList = styled.ul`
@@ -39,6 +69,11 @@ const SkillsList = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
 `;
 
 const SkillItem = styled.li`
@@ -54,25 +89,34 @@ const SkillItem = styled.li`
     left: 0;
     color: #64ffda;
   }
+  
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding-left: 20px;
+  }
 `;
 
 const About = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <AboutSection id="about">
       <Container>
         <Title>About Me</Title>
-        <Grid container spacing={6}>
+        <Grid container spacing={isMobile ? 4 : 6}>
           <Grid item xs={12} md={7}>
             <TextBlock>
-              I am a recently graduated Engineer with a strong passion for data-driven decision-making and analytical problem-solving. With a background in Computer Science, I have developed a solid foundation in technical thinking and quantitative analysis.
+              I am a recently graduated Engineer with a strong passion for both data-driven decision-making and full-stack web development. With a background in Computer Science, I have developed a solid foundation in technical thinking, quantitative analysis, and modern software development practices.
             </TextBlock>
             
             <TextBlock>
-              Over the past few months, I have completed several hands-on data analytics projects involving real-world datasets, where I used tools like Python (Pandas, NumPy, Matplotlib), SQL, Excel, and Power BI to extract insights and build dashboards. These projects helped me transform raw data into clear, actionable insights — a skill I am eager to bring into a professional role.
+              Over the past few months, I have completed several hands-on projects spanning data analytics and full-stack web development. My data projects involve real-world datasets using tools like Python (Pandas, NumPy, Matplotlib), SQL, Excel, and Power BI to extract insights and build dashboards. Simultaneously, I've built full-stack applications using React, Node.js, MongoDB, and modern web technologies.
             </TextBlock>
             
             <TextBlock>
-              I am now actively looking for opportunities where I can contribute as a Data Analyst, continue learning, and make a meaningful impact through data storytelling and analysis. I am particularly interested in roles that combine business understanding with analytical thinking.
+              I am now actively looking for opportunities where I can contribute as a Full-Stack Developer or Data Analyst, continue learning, and make a meaningful impact through both data storytelling and innovative web solutions. I am particularly interested in roles that combine analytical thinking with modern software development practices.
             </TextBlock>
 
             <SkillsTitle>
@@ -80,12 +124,12 @@ const About = () => {
             </SkillsTitle>
             
             <SkillsList>
+              <SkillItem>Full-Stack Web Development</SkillItem>
               <SkillItem>Data Analysis & Visualization</SkillItem>
-              <SkillItem>Statistical Modeling</SkillItem>
-              <SkillItem>SQL & Database Management</SkillItem>
-              <SkillItem>Python Programming</SkillItem>
-              <SkillItem>Business Intelligence Tools</SkillItem>
-              <SkillItem>Version control</SkillItem>
+              <SkillItem>Frontend & Backend Technologies</SkillItem>
+              <SkillItem>Database Design & Management</SkillItem>
+              <SkillItem>RESTful APIs & Modern Frameworks</SkillItem>
+              <SkillItem>Responsive Design & UI/UX</SkillItem>
             </SkillsList>
           </Grid>
         </Grid>
